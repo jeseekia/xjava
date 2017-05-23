@@ -2,52 +2,68 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.junit.Ignore;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
 
 public class HammingTest {
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
     
     @Test
     public void testNoDifferenceBetweenIdenticalStrands() {
-        assertThat(Hamming.compute("A", "A"), is(0));
+        assertThat(new Hamming("A", "A").getHammingDistance(), is(0));
     }
 
+    @Ignore("Remove to run test")
     @Test
-    public void testCompleteHammingDistanceOfForSingleNucleotideStrand() {
-        assertThat(Hamming.compute("A", "G"), is(1));
+    public void testHammingDistanceForSingleNucleotideStrand() {
+        assertThat(new Hamming("A", "G").getHammingDistance(), is(1));
     }
 
+    @Ignore("Remove to run test")
     @Test
-    public void testCompleteHammingDistanceForSmallStrand() {
-        assertThat(Hamming.compute("AG", "CT"), is(2)); 
+    public void testHammingDistanceForSmallStrand() {
+        assertThat(new Hamming("AG", "CT").getHammingDistance(), is(2));
     }
 
+    @Ignore("Remove to run test")
     @Test
     public void testSmallHammingDistance() {
-        assertThat(Hamming.compute("AT", "CT"), is(1));
+        assertThat(new Hamming("AT", "CT").getHammingDistance(), is(1));
     }
 
+    @Ignore("Remove to run test")
     @Test
     public void testSmallHammingDistanceInLongerStrand() {
-        assertThat(Hamming.compute("GGACG", "GGTCG"), is(1));
+        assertThat(new Hamming("GGACG", "GGTCG").getHammingDistance(), is(1));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Ignore("Remove to run test")
+    @Test
     public void testValidatesFirstStrandNotLonger() {
-        Hamming.compute("AAAG", "AAA");
+        thrown.expect(IllegalArgumentException.class);
+        new Hamming("AAAG", "AAA");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Ignore("Remove to run test")
+    @Test
     public void testValidatesOtherStrandNotLonger() {
-        Hamming.compute("AAA", "AAAG");
+        thrown.expect(IllegalArgumentException.class);
+        new Hamming("AAA", "AAAG");
     }
 
+    @Ignore("Remove to run test")
     @Test
     public void testLargeHammingDistance() {
-        assertThat(Hamming.compute("GATACA", "GCATAA"), is(4));
+        assertThat(new Hamming("GATACA", "GCATAA").getHammingDistance(), is(4));
     }
 
+    @Ignore("Remove to run test")
     @Test
     public void testHammingDistanceInVeryLongStrand() {
-        assertThat(Hamming.compute("GGACGGATTCTG", "AGGACGGATTCT"), is(9));
+        assertThat(new Hamming("GGACGGATTCTG", "AGGACGGATTCT").getHammingDistance(), is(9));
     }
 
 }

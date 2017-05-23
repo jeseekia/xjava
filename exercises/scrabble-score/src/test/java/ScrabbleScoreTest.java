@@ -10,10 +10,10 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Parameterized.class)
 public class ScrabbleScoreTest {
 
-    private String input;
-    private int expectedOutput;
+    private String scrabbleInput;
+    private int scrabbleScore;
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "{index}: expected scrabble score for \"{0}\" to be {1}")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
                 {"", 0},
@@ -28,15 +28,15 @@ public class ScrabbleScoreTest {
         });
     }
 
-    public ScrabbleScoreTest(String input, int expectedOutput) {
-        this.input = input;
-        this.expectedOutput = expectedOutput;
+    public ScrabbleScoreTest(String scrabbleInput, int scrabbleScore) {
+        this.scrabbleInput = scrabbleInput;
+        this.scrabbleScore = scrabbleScore;
     }
 
     @Test
     public void test() {
-        Scrabble scrabble = new Scrabble(input);
-
-        assertEquals(expectedOutput, scrabble.getScore());
+        Scrabble scrabble = new Scrabble(scrabbleInput);
+        assertEquals(scrabbleScore, scrabble.getScore());
     }
+
 }

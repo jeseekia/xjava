@@ -1,24 +1,72 @@
 import org.junit.Test;
+import org.junit.Ignore;
+import org.junit.Before;
 
 import static org.junit.Assert.assertEquals;
 
 public class BeerSongTest {
 
-    @Test
-    public void singOneVerse() {
-        assertEquals("8 bottles of beer on the wall, 8 bottles of beer.\nTake one down and pass it around, 7 bottles of beer on the wall.\n\n", BeerSong.verse(8));
-        assertEquals("2 bottles of beer on the wall, 2 bottles of beer.\nTake one down and pass it around, 1 bottle of beer on the wall.\n\n", BeerSong.verse(2));
-        assertEquals("1 bottle of beer on the wall, 1 bottle of beer.\nTake it down and pass it around, no more bottles of beer on the wall.\n\n", BeerSong.verse(1));
-        assertEquals("No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n\n", BeerSong.verse(0));
+    private BeerSong beerSong;
 
+    @Before
+    public void setup(){
+        beerSong = new BeerSong();
     }
 
     @Test
-    public void singMoreThanOneVerse() {
-        assertEquals("8 bottles of beer on the wall, 8 bottles of beer.\nTake one down and pass it around, 7 bottles of beer on the wall.\n\n7 bottles of beer on the wall, 7 bottles of beer.\nTake one down and pass it around, 6 bottles of beer on the wall.\n\n6 bottles of beer on the wall, 6 bottles of beer.\nTake one down and pass it around, 5 bottles of beer on the wall.\n\n", BeerSong.sing(8,6));
-        assertEquals("3 bottles of beer on the wall, 3 bottles of beer.\nTake one down and pass it around, 2 bottles of beer on the wall.\n\n2 bottles of beer on the wall, 2 bottles of beer.\nTake one down and pass it around, 1 bottle of beer on the wall.\n\n1 bottle of beer on the wall, 1 bottle of beer.\nTake it down and pass it around, no more bottles of beer on the wall.\n\nNo more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n\n",BeerSong.sing(3,0));
+    public void singFirstVerse() {
+        assertEquals("99 bottles of beer on the wall, 99 bottles of beer.\n" +
+                        "Take one down and pass it around, 98 bottles of beer on the wall.\n\n",
+                beerSong.verse(99));
     }
 
+    @Ignore("Remove to run test")
+    @Test
+    public void singMiddleVerse() {
+        assertEquals("44 bottles of beer on the wall, 44 bottles of beer.\n" +
+                        "Take one down and pass it around, 43 bottles of beer on the wall.\n\n",
+                beerSong.verse(44));
+    }
+
+    @Ignore("Remove to run test")
+    @Test
+    public void singThirdToLastVerse() {
+        assertEquals("2 bottles of beer on the wall, 2 bottles of beer.\n" +
+                        "Take one down and pass it around, 1 bottle of beer on the wall.\n\n",
+                beerSong.verse(2));
+    }
+
+    @Ignore("Remove to run test")
+    @Test
+    public void singPenultimateVerse() {
+        assertEquals("1 bottle of beer on the wall, 1 bottle of beer.\n" +
+                        "Take it down and pass it around, no more bottles of beer on the wall.\n\n",
+                beerSong.verse(1));
+    }
+
+    @Ignore("Remove to run test")
+    @Test
+    public void singLastVerse() {
+        assertEquals("No more bottles of beer on the wall, no more bottles of beer.\n" +
+                        "Go to the store and buy some more, 99 bottles of beer on the wall.\n\n",
+                beerSong.verse(0));
+    }
+
+    @Ignore("Remove to run test")
+    @Test
+    public void singLastFourVerses() {
+        assertEquals("3 bottles of beer on the wall, 3 bottles of beer.\n" +
+                        "Take one down and pass it around, 2 bottles of beer on the wall.\n\n" +
+                        "2 bottles of beer on the wall, 2 bottles of beer.\n" +
+                        "Take one down and pass it around, 1 bottle of beer on the wall.\n\n" +
+                        "1 bottle of beer on the wall, 1 bottle of beer.\n" +
+                        "Take it down and pass it around, no more bottles of beer on the wall.\n\n" +
+                        "No more bottles of beer on the wall, no more bottles of beer.\n" +
+                        "Go to the store and buy some more, 99 bottles of beer on the wall.\n\n",
+                beerSong.sing(3,0));
+    }
+
+    @Ignore("Remove to run test")
     @Test
     public void singEntireSong() {
         assertEquals("99 bottles of beer on the wall, 99 bottles of beer.\nTake one down and pass it around, 98 bottles of beer on the wall.\n\n" +
@@ -121,7 +169,7 @@ public class BeerSongTest {
                         "2 bottles of beer on the wall, 2 bottles of beer.\nTake one down and pass it around, 1 bottle of beer on the wall.\n\n" +
                         "1 bottle of beer on the wall, 1 bottle of beer.\nTake it down and pass it around, no more bottles of beer on the wall.\n\n" +
                         "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n\n",
-                BeerSong.singSong());
+                beerSong.singSong());
     }
 
 }
